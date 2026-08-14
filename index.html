@@ -33,8 +33,9 @@
     input { width:100%; padding:11px; border:1px solid #AAB8C2; border-radius:10px; font: .76rem ui-monospace,SFMono-Regular,Consolas,monospace; margin:10px 0; }
     .hidden { display:none; } .success { color:#157347; font-weight:700; }
     .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:22px; } .step { padding:17px; background:var(--pale); border-radius:13px; } .step b { display:block; font-size:.8rem; color:var(--teal); margin-bottom:6px; }
+    .service { margin-top:22px; padding:25px; background:var(--ink); color:#fff; border-radius:18px; display:grid; grid-template-columns:1.15fr .85fr; gap:24px; align-items:center; } .service h2 { font-size:1.65rem; margin-bottom:8px; } .service p { margin:0; line-height:1.5; color:#DCEEF5; } .service .button { background:#fff; color:var(--ink); margin:0 0 10px; } .service .button:hover { background:var(--pale); } .service a:not(.button) { color:#fff; } .service .note { color:#DCEEF5; }
     footer { margin-top:35px; color:var(--muted); font-size:.78rem; }
-    @media (max-width:720px) { .grid,.steps { grid-template-columns:1fr; } main { padding-top:26px; } }
+    @media (max-width:720px) { .grid,.steps,.service { grid-template-columns:1fr; } main { padding-top:26px; } }
   </style>
 </head>
 <body><main>
@@ -46,6 +47,7 @@
     <div class="card"><div class="eyebrow">Precio de lanzamiento</div><div class="price">USD 20</div><p class="sol" id="solAmount">Calculando importe en SOL...</p><a class="button" id="payLink" href="solana:Ai29NeGayymkMZJxhjWReRn6rRDbc4ePoAowtbpz3wth?amount=0.275&label=Kit+de+Validacion+Rapida&message=Pago+del+Kit+de+Validacion+Rapida+-+USD+20&memo=kit-validacion-usd20">Pagar con Phantom / Solana Pay</a><button id="copyButton" type="button">Copiar dirección de pago</button><div class="address">Ai29NeGayymkMZJxhjWReRn6rRDbc4ePoAowtbpz3wth</div><p class="note" id="paymentNote">El importe se actualiza contra SOL/USD al cargar. Revisa que Phantom muestre el destinatario y monto antes de confirmar.</p><input id="signature" inputmode="text" placeholder="Pega la firma de tu transacción para descargar"><button id="verifyButton" type="button">Verificar pago y descargar</button><p class="note" id="verifyNote">La verificación consulta Solana Mainnet y no requiere conectar tu billetera.</p><a class="button hidden" id="downloadLink" href="Kit-validacion-rapida-USD20.zip" download>Descargar el kit</a></div>
   </section>
   <section class="steps"><div class="step"><b>01 - Elige</b>Puntúa una idea que resuelva un dolor específico.</div><div class="step"><b>02 - Habla</b>Usa los guiones para obtener conversaciones reales.</div><div class="step"><b>03 - Cobra</b>Entrega una versión mínima y mejora con evidencia.</div></section>
+  <section class="service" aria-labelledby="audit-title"><div><div class="eyebrow" style="color:#DCEEF5">Servicio puntual</div><h2 id="audit-title">Auditoría Express de landing o preventa</h2><p>Recibe cinco mejoras priorizadas, un titular alternativo y una llamada a la acción más clara para una sola página u oferta. Trabajo aplicado a tu enlace y a tu objetivo real.</p></div><div><a class="button" id="auditPayLink" href="solana:Ai29NeGayymkMZJxhjWReRn6rRDbc4ePoAowtbpz3wth?amount=0.275&label=Auditoria+Express&message=Pago+Auditoria+Express+-+USD+20&memo=auditoria-express-usd20">Reservar auditoría — USD 20</a><p class="note">Tras pagar, envía el enlace de tu página, objetivo y firma de transacción a <a href="mailto:kitvalidacion679240@proton.me?subject=Auditoria%20Express%20-%20pago%20SOL">kitvalidacion679240@proton.me</a>.</p></div></section>
   <footer>Pago directo en SOL a la dirección visible. La conversión es una referencia al momento de carga; no se almacena información de billetera ni de tarjeta.</footer>
 </main>
 <script>
@@ -53,7 +55,7 @@
   const label = 'Kit de Validacion Rapida';
   const message = 'Pago del Kit de Validacion Rapida - USD 20';
   const fallback = 0.275; let requiredSol = fallback;
-  function payUri(amount) { return `solana:${address}?amount=${amount}&label=${encodeURIComponent(label)}&message=${encodeURIComponent(message)}&memo=kit-validacion-usd20`; }
+  function payUri(amount, memo = 'kit-validacion-usd20', paymentLabel = label, paymentMessage = message) { return `solana:${address}?amount=${amount}&label=${encodeURIComponent(paymentLabel)}&message=${encodeURIComponent(paymentMessage)}&memo=${encodeURIComponent(memo)}`; }
   async function price() {
     let amount = fallback;
     try {
@@ -64,7 +66,7 @@
       document.getElementById('solAmount').textContent = `${amount} SOL - cotización instantánea: 1 SOL ≈ $${usd.toFixed(2)}`;
       document.getElementById('paymentNote').textContent = 'Se agregó un margen de USD 0.15 por variación de precio. Confirma destinatario y monto en Phantom antes de enviar.';
     } catch { document.getElementById('solAmount').textContent = `${fallback} SOL - importe de respaldo (≈ USD 20)`; }
-    requiredSol = Number(amount); document.getElementById('payLink').href = payUri(amount);
+    requiredSol = Number(amount); document.getElementById('payLink').href = payUri(amount); document.getElementById('auditPayLink').href = payUri(amount, 'auditoria-express-usd20', 'Auditoria Express', 'Pago Auditoria Express - USD 20');
   }
   document.getElementById('copyButton').addEventListener('click', async () => {
     await navigator.clipboard.writeText(address); const b = document.getElementById('copyButton'); b.textContent = 'Dirección copiada'; setTimeout(()=>b.textContent='Copiar dirección de pago', 1800);
