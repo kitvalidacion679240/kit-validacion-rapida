@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Kit de Validacion Rapida: guia y calculadora para validar una micro-oferta en siete dias.">
+  <title>Kit de Validacion Rapida - USD 20</title>
+  <style>
+    :root { --ink:#12263A; --teal:#1E5F74; --pale:#DCEEF5; --paper:#F7FAFC; --muted:#52616B; }
+    * { box-sizing:border-box; } body { margin:0; background:var(--paper); color:var(--ink); font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif; }
+    main { max-width:970px; margin:0 auto; padding:38px 22px 60px; }
+    .eyebrow { color:var(--teal); font-size:.78rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+    h1 { font-size:clamp(2.3rem,7vw,4.7rem); line-height:.96; margin:.5rem 0 1rem; letter-spacing:-.06em; max-width:790px; }
+    .lead { color:var(--muted); font-size:1.2rem; line-height:1.55; max-width:710px; }
+    .grid { display:grid; grid-template-columns:1.1fr .9fr; gap:22px; margin-top:32px; }
+    .card { background:#fff; border:1px solid #D7E1E8; border-radius:18px; padding:25px; box-shadow:0 12px 38px rgba(18,38,58,.08); }
+    h2 { margin:0 0 15px; font-size:1.3rem; } ul { padding-left:1.2rem; line-height:1.8; margin:0; }
+    .price { font-size:3.3rem; letter-spacing:-.07em; font-weight:850; margin:4px 0; }
+    .sol { color:var(--teal); font-weight:700; margin:0 0 18px; }
+    .button { display:block; text-align:center; background:var(--ink); color:white; padding:15px 18px; border-radius:11px; font-weight:800; text-decoration:none; margin:16px 0 12px; }
+    .button:hover { background:var(--teal); } button { cursor:pointer; width:100%; border:1px solid #AAB8C2; background:#fff; color:var(--ink); padding:11px; border-radius:10px; font-weight:700; }
+    .address { font: .76rem ui-monospace,SFMono-Regular,Consolas,monospace; overflow-wrap:anywhere; background:#F2F6F8; padding:10px; border-radius:8px; margin:12px 0; color:#334E68; }
+    .note { font-size:.82rem; color:var(--muted); line-height:1.45; } .fine { font-size:.75rem; color:var(--muted); margin-top:16px; }
+    input { width:100%; padding:11px; border:1px solid #AAB8C2; border-radius:10px; font: .76rem ui-monospace,SFMono-Regular,Consolas,monospace; margin:10px 0; }
+    .hidden { display:none; } .success { color:#157347; font-weight:700; }
+    .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:22px; } .step { padding:17px; background:var(--pale); border-radius:13px; } .step b { display:block; font-size:.8rem; color:var(--teal); margin-bottom:6px; }
+    footer { margin-top:35px; color:var(--muted); font-size:.78rem; }
+    @media (max-width:720px) { .grid,.steps { grid-template-columns:1fr; } main { padding-top:26px; } }
+  </style>
+</head>
+<body><main>
+  <div class="eyebrow">Guia + calculadora editable</div>
+  <h1>Valida una micro-oferta antes de perder semanas construyéndola.</h1>
+  <p class="lead">El Kit de Validacion Rapida te da una ruta de 7 dias, mensajes de entrevista y preventa, una matriz de oportunidades y una calculadora de ventas. Hecho para conseguir señales reales, no aplausos.</p>
+  <section class="grid">
+    <div class="card"><h2>Incluye</h2><ul><li>Guia PDF práctica de siete dias.</li><li>Guiones para entrevistas, preventa y seguimiento.</li><li>Calculadora Excel para puntuar ideas y estimar conversaciones.</li><li>Plan editable para dar el siguiente paso hoy.</li></ul><p class="fine">No promete ingresos garantizados. Te entrega un sistema para probar una oferta concreta con personas reales.</p></div>
+    <div class="card"><div class="eyebrow">Precio de lanzamiento</div><div class="price">USD 20</div><p class="sol" id="solAmount">Calculando importe en SOL...</p><a class="button" id="payLink" href="solana:Ai29NeGayymkMZJxhjWReRn6rRDbc4ePoAowtbpz3wth?amount=0.275&label=Kit+de+Validacion+Rapida&message=Pago+del+Kit+de+Validacion+Rapida+-+USD+20&memo=kit-validacion-usd20">Pagar con Phantom / Solana Pay</a><button id="copyButton" type="button">Copiar dirección de pago</button><div class="address">Ai29NeGayymkMZJxhjWReRn6rRDbc4ePoAowtbpz3wth</div><p class="note" id="paymentNote">El importe se actualiza contra SOL/USD al cargar. Revisa que Phantom muestre el destinatario y monto antes de confirmar.</p><input id="signature" inputmode="text" placeholder="Pega la firma de tu transacción para descargar"><button id="verifyButton" type="button">Verificar pago y descargar</button><p class="note" id="verifyNote">La verificación consulta Solana Mainnet y no requiere conectar tu billetera.</p><a class="button hidden" id="downloadLink" href="Kit-validacion-rapida-USD20.zip" download>Descargar el kit</a></div>
+  </section>
+  <section class="steps"><div class="step"><b>01 - Elige</b>Puntúa una idea que resuelva un dolor específico.</div><div class="step"><b>02 - Habla</b>Usa los guiones para obtener conversaciones reales.</div><div class="step"><b>03 - Cobra</b>Entrega una versión mínima y mejora con evidencia.</div></section>
+  <footer>Pago directo en SOL a la dirección visible. La conversión es una referencia al momento de carga; no se almacena información de billetera ni de tarjeta.</footer>
+</main>
+<script>
+  const address = 'Ai29NeGayymkMZJxhjWReRn6rRDbc4ePoAowtbpz3wth';
+  const label = 'Kit de Validacion Rapida';
+  const message = 'Pago del Kit de Validacion Rapida - USD 20';
+  const fallback = 0.275; let requiredSol = fallback;
+  function payUri(amount) { return `solana:${address}?amount=${amount}&label=${encodeURIComponent(label)}&message=${encodeURIComponent(message)}&memo=kit-validacion-usd20`; }
+  async function price() {
+    let amount = fallback;
+    try {
+      const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd', {cache:'no-store'});
+      const data = await res.json(); const usd = Number(data.solana.usd);
+      if (!Number.isFinite(usd) || usd <= 0) throw new Error('precio no disponible');
+      amount = (20.15 / usd).toFixed(4); // pequeño margen para que el cobro siga siendo >= USD 20
+      document.getElementById('solAmount').textContent = `${amount} SOL - cotización instantánea: 1 SOL ≈ $${usd.toFixed(2)}`;
+      document.getElementById('paymentNote').textContent = 'Se agregó un margen de USD 0.15 por variación de precio. Confirma destinatario y monto en Phantom antes de enviar.';
+    } catch { document.getElementById('solAmount').textContent = `${fallback} SOL - importe de respaldo (≈ USD 20)`; }
+    requiredSol = Number(amount); document.getElementById('payLink').href = payUri(amount);
+  }
+  document.getElementById('copyButton').addEventListener('click', async () => {
+    await navigator.clipboard.writeText(address); const b = document.getElementById('copyButton'); b.textContent = 'Dirección copiada'; setTimeout(()=>b.textContent='Copiar dirección de pago', 1800);
+  });
+  document.getElementById('verifyButton').addEventListener('click', async () => {
+    const sig = document.getElementById('signature').value.trim(); const note = document.getElementById('verifyNote');
+    if (sig.length < 80) { note.textContent = 'La firma parece incompleta. Pégala desde el detalle de la transacción en Phantom.'; return; }
+    note.textContent = 'Comprobando la transacción en Solana...';
+    try {
+      const response = await fetch('https://api.mainnet-beta.solana.com', {method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({jsonrpc:'2.0',id:1,method:'getTransaction',params:[sig,{encoding:'jsonParsed',maxSupportedTransactionVersion:0}]})});
+      const json = await response.json(); const tx = json.result;
+      if (!tx || !tx.meta || tx.meta.err) throw new Error('No se encontró una transacción confirmada y exitosa.');
+      const instructions = tx.transaction.message.instructions || [];
+      const minLamports = Math.floor(requiredSol * 1_000_000_000);
+      const paid = instructions.some(i => i.parsed?.type === 'transfer' && i.parsed?.info?.destination === address && Number(i.parsed.info.lamports) >= minLamports);
+      if (!paid) throw new Error('La firma no muestra un envío suficiente a la dirección de esta página.');
+      note.textContent = 'Pago verificado. Tu descarga está lista.'; note.className = 'note success'; document.getElementById('downloadLink').classList.remove('hidden');
+    } catch (err) { note.textContent = err.message || 'No se pudo verificar. Espera unos segundos y prueba otra vez.'; note.className = 'note'; }
+  });
+  price();
+</script></body></html>
